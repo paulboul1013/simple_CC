@@ -1,0 +1,6 @@
+.cbuild
+*.o
+*.d
+main
+test
+test.c
