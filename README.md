@@ -9,5 +9,5 @@ make
 ```
 
 ## 事項進度
-- 修改verbose.c  
-- 編譯器觀念學習
+- 完成ast_to_string_init()
+- verbose.c的token_to_string尚未完成
