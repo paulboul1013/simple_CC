@@ -18,8 +18,8 @@ enum TokenType {
 };
 
 typedef struct {
-    int type;
-    uintptr_t priv;
+    int type; //代表 token 的種類（例如識別字、數字、符號等等）
+    uintptr_t priv; //安全儲存任意指標（例如 char*、int*、ASTNode* 等），或整數。
 } Token;
 
 enum {
@@ -175,6 +175,32 @@ typedef struct __Ast {
 extern char *token_to_string(const Token tok);
 extern char *ast_to_string(Ast *ast);
 extern char *ctype_to_string(Ctype *ctype);
+
+
+//lexer.c
+
+
+//marco region
+#define get_priv(tok,type) \
+    ({                      \
+        assert(__builtin_types_compatible_p(typeof(tok),Token)); \
+        ((type)tok.priv);                                       \
+    })
+
+
+#define get_ttype(tok) \
+    ({                      \
+        assert(__builtin_types_compatible_p(typeof(tok),Token)); \
+        (tok.type);                                               \
+    })
+
+//檢查 tok 的 type 是否等於期望的 ttype，再取出對應的 priv，並轉型成 priv_type
+#define get_token(tok,ttype,priv_type) \
+    ({                                   \
+        assert(get_ttype(tok)==ttype); \
+        get_priv(tok,priv_type);        \
+    })
+
 
 
 #endif
