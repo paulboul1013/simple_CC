@@ -177,10 +177,13 @@ extern char *ast_to_string(Ast *ast);
 extern char *ctype_to_string(Ctype *ctype);
 
 
+
 //lexer.c
+extern bool is_punct(const Token tok,int c);
 
 
 //marco region
+
 #define get_priv(tok,type) \
     ({                      \
         assert(__builtin_types_compatible_p(typeof(tok),Token)); \
@@ -201,6 +204,11 @@ extern char *ctype_to_string(Ctype *ctype);
         get_priv(tok,priv_type);        \
     })
 
+#define get_char(tok) get_token(tok,TTYPE_CHAR,char)
+#define get_strtok(tok) get_token(tok,TTYPE_STRING,char *)
+#define get_ident(tok) get_token(tok,TTYPE_IDENT,char *)
+#define get_number(tok) get_token(tok,TTYPE_NUMBER,char *)
+#define get_punct(tok) get_token(tok,TTYPE_PUNCT,int)
 
 
 #endif

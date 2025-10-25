@@ -242,6 +242,36 @@ char *token_to_string(const Token tok){
     if (ttype==TTYPE_NULL){
         return "(null)";
     }
+    
+    String s=make_string();
+    switch (ttype) {
+        case TTYPE_NULL:
+            error("internal error: unkown token type: %d",get_ttype(tok));
+
+        case TTYPE_IDENT:
+            return get_ident(tok);
+
+        case TTYPE_PUNCT:
+            if (is_punct(tok,PUNCT_EQ)) {
+                string_appendf(&s,"==");
+            }else{
+                string_appendf(&s,"%c",get_punct(tok));
+            }
+            return get_cstring(s);
+        
+        case TTYPE_CHAR:
+            string_append(&s,get_char(tok));
+            return get_cstring(s);
+
+        case TTYPE_NUMBER:
+            return get_number(tok);
+
+        case TTYPE_STRING:
+            string_appendf(&s,"\"%s\"",get_strtok(tok));
+            return get_cstring(s);
+    }
+
+    error("internal error: unkown token type: %d",get_ttype(tok));
 
     return NULL;
 }
