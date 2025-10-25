@@ -9,5 +9,5 @@ make
 ```
 
 ## 事項進度
-- 完成ast_to_string_init()
-- verbose.c的token_to_string尚未完成
+- 完成verbose.c
+- 完成lexer.c
