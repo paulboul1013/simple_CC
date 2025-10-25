@@ -180,7 +180,9 @@ extern char *ctype_to_string(Ctype *ctype);
 
 //lexer.c
 extern bool is_punct(const Token tok,int c);
-
+extern void unget_token(const Token tok);
+extern Token peek_token(void);
+extern Token read_token(void);
 
 //marco region
 
