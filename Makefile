@@ -12,7 +12,7 @@ endif
 
 
 #deps:store the dependencies of the objects
-OBJS = main.o verbose.o
+OBJS = main.o verbose.o lexer.o
 deps := $(OBJS:%.o=.%.o.d)
 
 
