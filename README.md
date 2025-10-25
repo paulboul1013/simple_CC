@@ -11,3 +11,4 @@ make
 ## 事項進度
 - 完成verbose.c
 - 完成lexer.c
+- 待做parser.c
