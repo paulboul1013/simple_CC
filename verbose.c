@@ -1,5 +1,10 @@
 #include "cc.h"
+/* verbose.c 
+提供將 C 類型(Ctype)和抽象語法樹(Ast)，詞法標記（Token）轉換為可讀的字串表示的函數。
+*/
 
+
+//將 C 類型（Ctype）轉換為可讀的字串表示
 char *ctype_to_string(Ctype *ctype){
     if (!ctype){
         return "(nil)";
@@ -231,12 +236,15 @@ static void ast_to_string_int(String *buf, Ast *ast){
         }
     }
 }
+
+//將抽象語法樹（Ast）轉換為可讀的字串表示
 char *ast_to_string(Ast *ast){
     String s=make_string();
     ast_to_string_int(&s,ast);
     return get_cstring(s);
 }
 
+//將 Token 轉換為可讀的字串表示
 char *token_to_string(const Token tok){
     enum TokenType ttype=get_ttype(tok);
     if (ttype==TTYPE_NULL){
